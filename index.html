@@ -2,96 +2,174 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="为塑料母粒、PET/PETG 与外贸业务定制的英语口语训练网站" />
-  <title>FluentPellet · 塑料行业英语教练</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230f6b50'/%3E%3Cpath d='M18 16h31v10H30v8h16v10H30v15H18z' fill='%23d8f05f'/%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <meta name="description" content="为塑料母粒、PET/PETG、3D 打印线材与外贸业务打造的专业英语训练工作台" />
+  <title>FluentPellet Pro · 塑料行业英语训练</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230b1220'/%3E%3Cpath d='M18 14h31v10H30v9h16v10H30v17H18z' fill='%23c9f45b'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="overrides.css" />
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="回到顶部"><span class="brand-mark">F</span><span>FluentPellet</span></a>
-    <nav aria-label="主导航">
-      <a href="#plan">学习路径</a><a href="#practice">情景对话</a><a href="#vocab">行业词库</a>
-    </nav>
-    <button class="ghost small" id="resetBtn">重置进度</button>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">为你的真实业务而学</p>
-        <h1>把英语，练成你的<br><em>第二套销售工具</em></h1>
-        <p class="lead">从四级 439 分出发，用 12 周建立开口习惯。围绕 PET/PETG、母粒、3D 打印线材与外贸场景，练到敢说、能问、会跟进。</p>
-        <div class="hero-actions"><a class="primary" href="#today">开始今天的 30 分钟</a><a class="ghost" href="#practice">直接进入对话</a></div>
-        <div class="trust"><span>✓ 无需背完整本单词书</span><span>✓ 进度自动保存在本机</span><span>✓ 支持语音跟读</span></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" data-nav="dashboard" aria-label="FluentPellet 首页">
+        <span class="brand-mark">F</span>
+        <span><b>FluentPellet</b><small>INDUSTRY ENGLISH</small></span>
+      </a>
+      <nav class="side-nav" aria-label="学习模块">
+        <button class="nav-item active" data-view="dashboard"><span>⌂</span><b>今日学习</b></button>
+        <button class="nav-item" data-view="pronunciation"><span>◉</span><b>发音训练</b></button>
+        <button class="nav-item" data-view="vocabulary"><span>Aa</span><b>行业词库</b><i id="savedBadge">0</i></button>
+        <button class="nav-item" data-view="products"><span>◇</span><b>产品知识</b></button>
+        <button class="nav-item" data-view="conversation"><span>◌</span><b>业务对话</b></button>
+        <button class="nav-item" data-view="roadmap"><span>⌁</span><b>12 周计划</b></button>
+      </nav>
+      <div class="level-card">
+        <div class="level-ring"><span id="levelPercent">18%</span></div>
+        <div><small>当前等级</small><b>Starter A2</b><p>距下一阶段还需 82 词</p></div>
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
-        <div class="word-card card-a"><b>clarify</b><span>澄清需求</span></div>
-        <div class="word-card card-b"><b>batch consistency</b><span>批次稳定性</span></div>
-        <div class="word-card card-c"><b>Could you tell me…?</b><span>开始一次专业提问</span></div>
-        <div class="hero-score"><span>WEEK 01</span><strong>Start speaking.</strong><i></i></div>
-      </div>
-    </section>
+      <div class="sidebar-foot"><span class="status-dot"></span><span>学习数据保存在本机</span></div>
+    </aside>
 
-    <section class="dashboard" id="today">
-      <div>
-        <p class="eyebrow">TODAY · 今日训练</p>
-        <h2>今天只做三件事</h2>
-        <p>总计约 30 分钟。完成比完美更重要。</p>
-      </div>
-      <div class="progress-wrap"><span id="progressLabel">0 / 3 完成</span><div class="progress"><i id="progressBar"></i></div></div>
-      <div class="task-grid">
-        <label class="task"><input type="checkbox" data-task="listen"><span class="check"></span><div><small>10 MIN · 听力</small><b>听懂一次客户询盘</b><p>先抓产品、问题、数量三个关键词</p></div></label>
-        <label class="task"><input type="checkbox" data-task="speak"><span class="check"></span><div><small>10 MIN · 口语</small><b>跟读 5 个关键句</b><p>录音一次，不纠结口音，保证句子完整</p></div></label>
-        <label class="task"><input type="checkbox" data-task="read"><span class="check"></span><div><small>10 MIN · 阅读</small><b>读一段 PET 产品资料</b><p>找出用途、添加量、优势和注意事项</p></div></label>
-      </div>
-    </section>
-
-    <section class="plan section" id="plan">
-      <div class="section-head"><div><p class="eyebrow">12-WEEK ROADMAP</p><h2>从“知道”到“能用”</h2></div><p>每周 5 天 × 每天 30–45 分钟。周末用一次真实业务复盘来巩固。</p></div>
-      <div class="phase-tabs" role="tablist"><button class="active" data-phase="1">01 开口期</button><button data-phase="2">02 场景期</button><button data-phase="3">03 实战期</button></div>
-      <div id="phaseContent" class="phase-content"></div>
-    </section>
-
-    <section class="practice section" id="practice">
-      <div class="section-head"><div><p class="eyebrow">ROLEPLAY LAB</p><h2>和“海外客户”练一轮</h2></div><p>选择场景后用英语回复。教练会继续追问，并给出更自然的表达建议。</p></div>
-      <div class="practice-shell">
-        <aside>
-          <p class="aside-label">选择训练场景</p>
-          <button class="scenario active" data-scene="inquiry"><span>01</span><div><b>首次询盘</b><small>难度 · 基础</small></div></button>
-          <button class="scenario" data-scene="sample"><span>02</span><div><b>寄送样品</b><small>难度 · 基础</small></div></button>
-          <button class="scenario" data-scene="quality"><span>03</span><div><b>稳定性异议</b><small>难度 · 进阶</small></div></button>
-          <button class="scenario" data-scene="filament"><span>04</span><div><b>3D 打印线材</b><small>难度 · 进阶</small></div></button>
-          <div class="tip"><span>💡</span><p><b>别先翻译整句话</b><br>先说结论，再补理由和数据。</p></div>
-        </aside>
-        <div class="chat-panel">
-          <div class="chat-head"><div><span class="avatar">JM</span><div><b>James Miller</b><small><i></i> UK buyer · 在线</small></div></div><button class="icon-btn" id="replayBtn" title="朗读客户消息">🔊</button></div>
-          <div class="messages" id="messages" aria-live="polite"></div>
-          <div class="coach-box" id="coachBox"><b>表达提示</b><span id="hintText">试着先问清客户当前使用的材料和主要问题。</span></div>
-          <form class="composer" id="chatForm"><button type="button" class="mic" id="micBtn" title="语音输入">🎙</button><textarea id="replyInput" rows="2" placeholder="用英语回复客户…" required></textarea><button class="send" type="submit">发送</button></form>
+    <div class="main-column">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="打开菜单">☰</button>
+        <div class="breadcrumb"><span>PLASTICS ENGLISH</span><b id="pageTitle">今日学习</b></div>
+        <div class="top-actions">
+          <button class="streak-pill" title="连续学习天数"><span>◆</span><b id="streakCount">1</b> 天</button>
+          <button class="profile" aria-label="个人学习状态"><span>WY</span><div><b>学习者</b><small>CET-4 · 439</small></div></button>
         </div>
-      </div>
-    </section>
+      </header>
 
-    <section class="vocab section" id="vocab">
-      <div class="section-head"><div><p class="eyebrow">INDUSTRY DECK</p><h2>今天掌握 8 个高频词</h2></div><div class="filters"><button class="active" data-filter="all">全部</button><button data-filter="material">材料</button><button data-filter="business">业务</button></div></div>
-      <div class="word-grid" id="wordGrid"></div>
-    </section>
+      <main class="workspace">
+        <section class="view active" data-view-panel="dashboard">
+          <div class="welcome-row">
+            <div><p class="kicker">GOOD TO SEE YOU</p><h1>今天，练会一句能用的英语。</h1><p>先完成发音热身，再进入客户询盘。预计 32 分钟。</p></div>
+            <div class="date-chip"><b id="todayDate">10月9日</b><span>WEEK 01 · DAY 01</span></div>
+          </div>
 
-    <section class="reading section">
-      <div class="reading-card">
-        <div><p class="eyebrow">READ LIKE A PRO</p><h2>行业资料四步读法</h2><p>阅读 TDS、产品页或英文邮件时，不逐字翻译。每次只提取四类信息。</p></div>
-        <ol><li><span>01</span><b>Application</b><small>用在哪里？</small></li><li><span>02</span><b>Dosage</b><small>添加多少？</small></li><li><span>03</span><b>Benefit</b><small>解决什么？</small></li><li><span>04</span><b>Risk</b><small>有什么限制？</small></li></ol>
-      </div>
-    </section>
-  </main>
-  <footer><div class="brand"><span class="brand-mark">F</span><span>FluentPellet</span></div><p>Speak for the work you want to do.</p><a href="#top">回到顶部</a></footer>
+          <div class="metric-grid">
+            <article class="metric"><span class="metric-icon lime">Aa</span><div><small>已学词汇</small><b id="learnedMetric">0</b><em>/ 120+</em></div><i><u id="wordProgress"></u></i></article>
+            <article class="metric"><span class="metric-icon cyan">◉</span><div><small>最佳发音</small><b id="scoreMetric">—</b><em>分</em></div><i><u id="scoreProgress"></u></i></article>
+            <article class="metric"><span class="metric-icon amber">◷</span><div><small>今日训练</small><b id="minuteMetric">0</b><em>分钟</em></div><i><u id="minuteProgress"></u></i></article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="panel mission-panel">
+              <div class="panel-head"><div><p class="kicker">TODAY'S MISSION</p><h2>今日任务</h2></div><span id="missionCount">0 / 4</span></div>
+              <div class="mission-list">
+                <label class="mission"><input type="checkbox" data-mission="warmup"><span class="mission-check"></span><div><b>发音热身</b><small>跟读 “batch consistency” 3 次</small></div><em>5 MIN</em></label>
+                <label class="mission"><input type="checkbox" data-mission="words"><span class="mission-check"></span><div><b>核心词汇</b><small>掌握 10 个产品与质量词</small></div><em>8 MIN</em></label>
+                <label class="mission"><input type="checkbox" data-mission="roleplay"><span class="mission-check"></span><div><b>情景对话</b><small>完成一次 PET 片材客户询盘</small></div><em>12 MIN</em></label>
+                <label class="mission"><input type="checkbox" data-mission="product"><span class="mission-check"></span><div><b>产品表达</b><small>用英文介绍爽滑防粘母粒</small></div><em>7 MIN</em></label>
+              </div>
+              <button class="primary-btn" data-jump="pronunciation">开始第一个任务</button>
+            </article>
+
+            <article class="panel daily-speak">
+              <div class="panel-head"><div><p class="kicker">DAILY SPEAK</p><h2>一句练透</h2></div><span class="accent-badge">US</span></div>
+              <div class="phrase-main">Could you tell me which PET grade you are currently using?</div>
+              <div class="ipa">/kʊd juː tel miː wɪtʃ piː iː tiː ɡreɪd juː ɑːr ˈkʌrəntli ˈjuːzɪŋ/</div>
+              <p class="translation">请问贵司目前使用的是哪一种 PET 牌号？</p>
+              <div class="speak-actions"><button class="sound-btn" data-speak="Could you tell me which PET grade you are currently using?" data-rate="0.72">慢速</button><button class="sound-btn solid" data-speak="Could you tell me which PET grade you are currently using?" data-rate="0.95">标准发音</button></div>
+              <div class="tip-line"><span>TIP</span><p><b>could you</b> 连读为 /kʊdʒu/，<b>currently</b> 重音在第一音节。</p></div>
+            </article>
+          </div>
+
+          <div class="section-heading compact"><div><p class="kicker">QUICK START</p><h2>从真实工作场景开始</h2></div><button class="text-btn" data-jump="conversation">查看全部场景</button></div>
+          <div class="quick-grid">
+            <button class="quick-card" data-jump="conversation" data-scene-target="inquiry"><span>01</span><div><b>首次询盘</b><small>确认材料、用途、问题与采购量</small></div><em>基础</em></button>
+            <button class="quick-card" data-jump="conversation" data-scene-target="quality"><span>02</span><div><b>稳定性异议</b><small>回应批次一致性、雾度与黄度</small></div><em>进阶</em></button>
+            <button class="quick-card" data-jump="products"><span>03</span><div><b>产品介绍</b><small>讲清作用、添加量与验证方式</small></div><em>必学</em></button>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="pronunciation">
+          <div class="page-intro"><div><p class="kicker">PRONUNCIATION STUDIO</p><h1>听清、拆开、说准。</h1><p>选择美音或英音，先慢速听，再录下自己的发音。系统会比较你说出的单词并给出清晰度评分。</p></div><div class="header-stat"><span>今日最好</span><b id="bestScore">—</b><small>/ 100</small></div></div>
+          <div class="pronounce-layout">
+            <article class="panel studio-card">
+              <div class="studio-toolbar">
+                <div class="segmented" id="accentSwitch"><button class="active" data-accent="en-US">美音 US</button><button data-accent="en-GB">英音 UK</button></div>
+                <label>语速 <input id="rateRange" type="range" min="0.55" max="1.1" value="0.88" step="0.05"><span id="rateLabel">0.88×</span></label>
+              </div>
+              <div class="practice-index">PHRASE <span id="phraseIndex">01</span> / 12</div>
+              <h2 id="practicePhrase">Batch consistency is critical for our high-speed extrusion line.</h2>
+              <div class="large-ipa" id="practiceIpa">/bætʃ kənˈsɪstənsi ɪz ˈkrɪtɪkəl fər aʊər haɪ spiːd ɪkˈstruːʒən laɪn/</div>
+              <p class="phrase-cn" id="practiceCn">批次一致性对我们的高速挤出生产线至关重要。</p>
+              <div class="phoneme-row" id="phonemeRow"></div>
+              <div class="wave" id="waveform" aria-hidden="true"></div>
+              <div class="studio-actions">
+                <button class="round-action" id="listenSlow"><span>▶</span><b>慢速听</b></button>
+                <button class="record-action" id="recordBtn"><span>●</span><b>开始跟读</b><small>点击录音</small></button>
+                <button class="round-action" id="listenNormal"><span>▶</span><b>标准听</b></button>
+              </div>
+              <div class="score-result" id="scoreResult" hidden>
+                <div class="score-orb"><b id="scoreNumber">0</b><span>清晰度</span></div>
+                <div><h3 id="scoreTitle">继续练习</h3><p id="scoreFeedback"></p><div class="word-feedback" id="wordFeedback"></div></div>
+              </div>
+            </article>
+            <aside class="practice-list panel">
+              <div class="panel-head"><div><p class="kicker">PRACTICE SET</p><h2>高频表达</h2></div></div>
+              <div id="phraseList"></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="vocabulary">
+          <div class="page-intro"><div><p class="kicker">CORE VOCABULARY</p><h1>塑料行业高频词库</h1><p>覆盖材料、助剂、生产、质量、销售、外贸与 3D 打印。点击星标建立自己的复习清单。</p></div><div class="header-stat"><span>词库总量</span><b id="totalWords">120+</b><small>个核心词</small></div></div>
+          <div class="word-controls panel">
+            <label class="search-box"><span>⌕</span><input id="wordSearch" type="search" placeholder="搜索英文、中文或例句…"></label>
+            <div class="category-chips" id="categoryChips"></div>
+            <button class="outline-btn" id="savedOnlyBtn">只看已收藏</button>
+          </div>
+          <div class="word-summary"><span id="wordResultCount">0 个词</span><p>点击单词朗读，点击例句可听完整表达。</p></div>
+          <div class="word-table panel">
+            <div class="word-table-head"><span>单词 / 发音</span><span>中文释义</span><span>应用例句</span><span>收藏</span></div>
+            <div id="wordRows"></div>
+          </div>
+          <button class="load-more" id="loadMoreBtn">显示更多单词</button>
+        </section>
+
+        <section class="view" data-view-panel="products">
+          <div class="page-intro"><div><p class="kicker">PRODUCT KNOWLEDGE</p><h1>用英语讲清你的产品</h1><p>先理解产品逻辑，再掌握客户听得懂的英文介绍。每张卡都包含用途、价值、关键指标和可直接使用的话术。</p></div><div class="header-stat"><span>核心方案</span><b>06</b><small>个产品方向</small></div></div>
+          <div class="product-filter" id="productFilter"><button class="active" data-product-filter="all">全部</button><button data-product-filter="masterbatch">功能母粒</button><button data-product-filter="liquid">液体助剂</button><button data-product-filter="printing">3D 打印</button></div>
+          <div class="product-grid" id="productGrid"></div>
+          <article class="product-method panel">
+            <div><p class="kicker">4-STEP PRODUCT PITCH</p><h2>产品介绍不再背长稿</h2><p>按这个顺序说，客户更容易听懂，也更容易继续提问。</p></div>
+            <ol><li><span>01</span><b>Problem</b><small>客户遇到什么问题</small></li><li><span>02</span><b>Solution</b><small>产品如何解决</small></li><li><span>03</span><b>Evidence</b><small>用什么指标验证</small></li><li><span>04</span><b>Next step</b><small>样品、测试和反馈</small></li></ol>
+          </article>
+        </section>
+
+        <section class="view" data-view-panel="conversation">
+          <div class="page-intro"><div><p class="kicker">ROLEPLAY LAB</p><h1>把业务对话练成反射</h1><p>选择一个真实场景，用英语回复。系统会推进对话、标出关键表达，并给出更专业的说法。</p></div><div class="header-stat"><span>可练场景</span><b>06</b><small>类客户对话</small></div></div>
+          <div class="conversation-shell panel">
+            <aside class="scenario-list" id="scenarioList"></aside>
+            <div class="chat-area">
+              <div class="chat-header"><div><span class="client-avatar">JM</span><div><b id="clientName">James Miller</b><small id="clientRole">UK sheet manufacturer · Buyer</small></div></div><button class="icon-action" id="replayClient" aria-label="朗读客户最后一句">🔊</button></div>
+              <div class="chat-messages" id="chatMessages"></div>
+              <div class="coach-note"><span>COACH</span><p id="coachHint">先确认材料、用途和当前问题，不要一上来介绍全部产品。</p></div>
+              <form class="chat-composer" id="chatForm"><button type="button" id="chatMic" aria-label="语音输入">🎙</button><textarea id="chatInput" rows="2" placeholder="用英语回复客户…" required></textarea><button class="send-btn" type="submit">发送</button></form>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="roadmap">
+          <div class="page-intro"><div><p class="kicker">12-WEEK ROADMAP</p><h1>从敢开口到独立沟通</h1><p>每周 5 天，每天 30–45 分钟。用真实业务输出检验进步，而不是只看背了多少单词。</p></div><div class="header-stat"><span>总周期</span><b>12</b><small>周</small></div></div>
+          <div class="phase-switch" id="phaseSwitch"><button class="active" data-phase="1">阶段一 · 开口</button><button data-phase="2">阶段二 · 场景</button><button data-phase="3">阶段三 · 实战</button></div>
+          <div class="roadmap-body panel" id="roadmapBody"></div>
+          <article class="weekly-template panel"><div><p class="kicker">WEEKLY RHYTHM</p><h2>每周固定节奏</h2></div><div class="rhythm"><span><b>周一</b>词汇与发音</span><span><b>周二</b>产品英语</span><span><b>周三</b>听力与复述</span><span><b>周四</b>客户对话</span><span><b>周五</b>业务输出</span><span><b>周末</b>复盘与测验</span></div></article>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal" id="productModal" hidden>
+    <button class="modal-backdrop" data-close-modal aria-label="关闭详情"></button>
+    <article class="modal-card"><button class="modal-close" data-close-modal>×</button><div id="modalContent"></div></article>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="vocab-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
+
